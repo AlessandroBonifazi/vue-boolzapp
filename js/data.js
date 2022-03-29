@@ -2,7 +2,7 @@
 console.log('Data OK!');
 
 // Data
-contacts: [
+const contacts = [
     {
         name: 'Michele',
         avatar: '_1',

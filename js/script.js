@@ -8,11 +8,14 @@ console.log('JS OK!');
 
 // Config
 const app = new Vue({
-    el: '#',
+    el: '#root',
     data: {
-
+        contacts,
+        activeChat: null,
     },
     methods: {
-
-    },
-})
+        setActiveChat(i) {
+            this.activeChat = i;
+        },
+    }
+});

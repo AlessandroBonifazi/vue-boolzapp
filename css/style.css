@@ -5,5 +5,19 @@
     box-sizing: border-box;
 }
 /* Utility */
-
+.ab-bg-grey {
+    background-color: #eaeaea;
+}
+.ab-h60 {
+    height: 60px;
+}
+.frame {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 8px;
+}
 /* Content */
+.ab-bg-chat {
+    background-image: url('../img/mine.jpg');
+}
