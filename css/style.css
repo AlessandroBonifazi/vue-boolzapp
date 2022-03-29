@@ -4,12 +4,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background-color: #009688;
+}
 /* Utility */
 .ab-bg-grey {
     background-color: #eaeaea;
 }
 .ab-h60 {
     height: 60px;
+}
+.ab-h45 {
+    height: 45px;
 }
 .frame {
     height: 50px;
@@ -21,3 +27,13 @@
 .ab-bg-chat {
     background-image: url('../img/mine.jpg');
 }
+
+.icons {
+    color: gray;
+    font-size: 20px;
+    margin: 0px 7px;
+}
+.icons:hover {
+    cursor: pointer;
+}
+

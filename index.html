@@ -25,7 +25,7 @@
         <div class="container-lg">
             <div class="row gx-0">
                 <!-- container sx -->
-                <div class="col-4 d-flex flex-column vh-100">
+                <div class="col-4 d-flex flex-column vh-100 bg-white">
                     <!-- header -->
                     <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
                         <!-- user details -->
@@ -37,9 +37,9 @@
                         </div>
                         <!-- controls -->
                         <div class="d-flex align-items-center">
-                            <i class="fa-solid fa-circle-notch"></i>
-                            <i class="fa-solid fa-message"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i class="icons fa-solid fa-circle-notch"></i>
+                            <i class="icons fa-solid fa-message"></i>
+                            <i class="icons fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
 
@@ -78,9 +78,9 @@
                         </div>
                         <!-- controls -->
                         <div class="d-flex align-items-center">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i class="icons fa-solid fa-magnifying-glass"></i>
+                            <i class="icons fa-solid fa-paperclip"></i>
+                            <i class="icons fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
 
@@ -89,8 +89,19 @@
                     <div v-else></div> -->
 
                     <!-- chat input -->
-                    <div class="ab-h60 d-flex ab-bg-grey">
-                        <!--  -->
+                    <div class="ab-h60 d-flex justify-content-between align-items-center ab-bg-grey p-3">
+                        <div>
+                            <i class="icons fa-regular fa-face-smile"></i>
+                        </div>
+                        <!-- input message -->
+                        <div class="flex-grow-1 mx-3">
+                            <input class="border-0 w-100 rounded-3 ab-h45" type="text" name="" id="search"
+                                placeholder="Scrivi un messaggio">
+                        </div>
+                        <!-- microphone -->
+                        <div>
+                            <i class="icons fa-solid fa-microphone"></i>
+                        </div>
                     </div>
                 </div>
             </div>
