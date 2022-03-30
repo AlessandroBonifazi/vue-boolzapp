@@ -79,7 +79,7 @@
                 <!-- container dx -->
                 <div class="col-8 d-flex flex-column vh-100 ab-bg-chat">
                     <!-- header -->
-                    <div class="ab-h60 mb-auto d-flex justify-content-between ab-bg-grey">
+                    <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
                         <!-- user details -->
                         <div class="d-flex align-items-center">
                             <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
@@ -97,8 +97,9 @@
                     </div>
 
                     <!-- active chat -->
-                    <div class="d-flex flex-column px-5">
-                        <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)">
+                    <div class="d-flex mb-auto flex-column px-5 pt-4">
+                        <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)"
+                            class="text-message">
                             <p>{{obj.message}}</p>
                         </div>
                     </div>
