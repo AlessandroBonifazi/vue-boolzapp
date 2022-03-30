@@ -111,7 +111,8 @@
                         </div>
                         <!-- input message -->
                         <div class="flex-grow-1 mx-3">
-                            <input class="border-0 w-100 rounded-3 ab-h45" type="text" name="" id="search"
+                            <input @keyUp.enter="sendMessage(activeChat)" v-model="newMessage"
+                                class="border-0 w-100 rounded-3 ab-h45 px-2" type="text" name=""
                                 placeholder="Scrivi un messaggio">
                         </div>
                         <!-- microphone -->

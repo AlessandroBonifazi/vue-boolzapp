@@ -12,6 +12,7 @@ const app = new Vue({
     data: {
         contacts,
         activeChat: 0,
+        newMessage: '',
     },
     methods: {
         setActiveChat(i) {
@@ -34,6 +35,22 @@ const app = new Vue({
         },
         chatAvatar(contact) {
             return `img/avatar${contact.avatar}.jpg`;
+        },
+        sendMessage(activeChat) {
+            const inputMessage = {
+                message: this.newMessage,
+                status: 'sent',
+            };
+            this.contacts[activeChat].messages.push(inputMessage);
+            this.newMessage = '';
+            setTimeout(this.okReply(activeChat), 1000);
+        },
+        okReply(activeChat) {
+            const reply = {
+                message: 'OK!',
+                status: 'received',
+            }
+            this.contacts[activeChat].messages.push(reply);
         },
     }
 })
