@@ -36,10 +36,21 @@
                             </div>
                         </div>
                         <!-- controls -->
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center me-2">
                             <i class="icons fa-solid fa-circle-notch"></i>
                             <i class="icons fa-solid fa-message"></i>
                             <i class="icons fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <!-- notification -->
+                    <div class=" col-12 d-flex align-items-center ab-bg-blue p-3">
+                        <div>
+                            <i class="fa-solid fa-bell-slash bg-white rounded-circle p-3 me-3"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 fw-bold">Ricevi notifiche di nuovi messagi</p>
+                            <p class="text-decoration-underline mb-0">Attiva notifiche desktop</p>
                         </div>
                     </div>
 
@@ -54,7 +65,7 @@
                     <div v-for="(contact, index) in contacts"
                         class="col-12 d-flex align-items-center justify-content-between px-2">
                         <div class="d-flex">
-                            <img class="frame" :src="'img/avatar' + contact.avatar + '.jpg'" alt="user avatar">
+                            <img class="frame" :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                             <div>
                                 <div class="fw-bold">{{contact.name}}</div>
                                 <p>Ultimo messaggio inviato</p>
@@ -77,7 +88,7 @@
                             </div>
                         </div>
                         <!-- controls -->
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center me-2">
                             <i class="icons fa-solid fa-magnifying-glass"></i>
                             <i class="icons fa-solid fa-paperclip"></i>
                             <i class="icons fa-solid fa-ellipsis-vertical"></i>
@@ -85,8 +96,18 @@
                     </div>
 
                     <!-- active chat -->
-                    <!-- <div v-if="activeChat !== null"></div>
-                    <div v-else></div> -->
+                    <div class="d-flex flex-column px-5">
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">ao</div>
+                        <div class="message sent">soccia</div>
+                        <div class="message received">bella</div>
+                    </div>
 
                     <!-- chat input -->
                     <div class="ab-h60 d-flex justify-content-between align-items-center ab-bg-grey p-3">

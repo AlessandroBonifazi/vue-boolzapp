@@ -11,6 +11,9 @@ body {
 .ab-bg-grey {
     background-color: #eaeaea;
 }
+.ab-bg-blue {
+    background-color: #8edafc;
+}
 .ab-h60 {
     height: 60px;
 }
@@ -37,3 +40,18 @@ body {
     cursor: pointer;
 }
 
+.message {
+    min-width: 200px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.sent {
+    background-color: #d5f9ba;
+    align-self: flex-end;
+}
+.received {
+    background-color: white;
+    align-self: flex-start;
+}
