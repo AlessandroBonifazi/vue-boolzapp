@@ -11,11 +11,21 @@ const app = new Vue({
     el: '#root',
     data: {
         contacts,
-        activeChat: null,
+        // activeChat: null,
     },
     methods: {
         setActiveChat(i) {
-            this.activeChat = i;
+            let activeChat = i;
+            // this.activeChat = ;
+            console.log(activeChat);
+        },
+        getAvatar(i) {
+            return 'img/avatar' + i + '.jpg';
+        },
+        getLastMsg(contact) {
+            const messages = contact.messages;
+            const lastMessages = messages[contact.messages.length - 1].message;
+            return lastMessages;
         },
     }
-});
+})
