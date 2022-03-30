@@ -82,9 +82,9 @@
                     <div class="ab-h60 mb-auto d-flex justify-content-between ab-bg-grey">
                         <!-- user details -->
                         <div class="d-flex align-items-center">
-                            <img class="frame" src="img/avatar_1.jpg" alt="img-chat">
+                            <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
                             <div class="details">
-                                <h5>Michele</h5>
+                                <h5 class="mb-0">{{contacts[activeChat].name}}</h5>
                                 <span>Ultimo accesso</span>
                             </div>
                         </div>
@@ -98,9 +98,9 @@
 
                     <!-- active chat -->
                     <div class="d-flex flex-column px-5">
-                        <div class="text-message sent">ciao</div>
-                        <div class="text-message sent">ciao</div>
-                        <div class="text-message received">ciao</div>
+                        <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)">
+                            <p>{{obj.message}}</p>
+                        </div>
                     </div>
 
                     <!-- chat input -->

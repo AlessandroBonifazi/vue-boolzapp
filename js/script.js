@@ -11,13 +11,11 @@ const app = new Vue({
     el: '#root',
     data: {
         contacts,
-        // activeChat: null,
+        activeChat: 0,
     },
     methods: {
         setActiveChat(i) {
-            let activeChat = i;
-            // this.activeChat = ;
-            console.log(activeChat);
+            this.activeChat = i;
         },
         getAvatar(i) {
             return 'img/avatar' + i + '.jpg';
@@ -26,6 +24,16 @@ const app = new Vue({
             const messages = contact.messages;
             const lastMessages = messages[contact.messages.length - 1].message;
             return lastMessages;
+        },
+        checkStatus(message) {
+            if (message.status === 'sent') {
+                return 'sent';
+            } else {
+                return 'received';
+            }
+        },
+        chatAvatar(contact) {
+            return `img/avatar${contact.avatar}.jpg`;
         },
     }
 })
