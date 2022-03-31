@@ -28,7 +28,10 @@ body {
 
 .ab-h95 {
     height: 95vh;
-    margin: auto;
+}
+
+.ab-h100 {
+    height: calc(100% - 120px);
 }
 
 .frame {
@@ -48,6 +51,14 @@ body {
 
 .ab-border-left {
     border-left: 1px solid rgb(192, 191, 191);
+}
+
+.text-grey {
+    color: gray;
+}
+
+.p-relative {
+    position: relative;
 }
 
 /* Content */
@@ -91,4 +102,10 @@ body {
     height: 100%;
     color: white;
     background-color: #222e35;
+}
+
+.ab-dropdown {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
