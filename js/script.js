@@ -39,9 +39,9 @@ const app = new Vue({
             };
             this.contacts[activeChat].messages.push(inputMessage);
             this.newMessage = '';
-            setTimeout(this.okReply(activeChat), 1000);
+            setTimeout(this.autoReply(activeChat), 1000);
         },
-        okReply(activeChat) {
+        autoReply(activeChat) {
             const reply = {
                 message: 'OK!',
                 status: 'received',
@@ -58,6 +58,11 @@ const app = new Vue({
                     this.contacts[i].visible = false;
                 }
             }
+        },
+        getTimeLastMsg(contact) {
+            const messages = contact.messages;
+            const lastMessageDate = messages[contact.messages.length - 1].time;
+            return lastMessageDate;
         },
     }
 })
