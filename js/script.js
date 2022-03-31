@@ -1,11 +1,6 @@
 // Debug
 console.log('JS OK!');
 
-// Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) 
-// e dall’interlocutore (bianco) assegnando due classi CSS diverse
-// Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, 
-// visualizzare nome e immagine di ogni contatto
-
 // Config
 const app = new Vue({
     el: '#root',
@@ -13,6 +8,7 @@ const app = new Vue({
         contacts,
         activeChat: -1,
         newMessage: '',
+        search: '',
     },
     methods: {
         setActiveChat(i) {
@@ -51,6 +47,17 @@ const app = new Vue({
                 status: 'received',
             }
             this.contacts[activeChat].messages.push(reply);
+        },
+        searchChat() {
+            const input = this.search.toLowerCase();
+            for (let i = 0; i < this.contacts.length; i++) {
+                const contactName = this.contacts[i].name.toLowerCase();
+                if (contactName.includes(input)) {
+                    this.contacts[i].visible = true;
+                } else if (!contactName.includes(input)) {
+                    this.contacts[i].visible = false;
+                }
+            }
         },
     }
 })

@@ -33,6 +33,10 @@ body {
     margin: 8px;
 }
 
+.hover:hover {
+    cursor: pointer;
+}
+
 /* Content */
 .ab-bg-chat {
     background-image: url('../img/mine.jpg');
