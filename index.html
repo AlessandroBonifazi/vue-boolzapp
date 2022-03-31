@@ -78,34 +78,36 @@
 
                 <!-- container dx -->
                 <div class="col-8 d-flex flex-column vh-100 ab-bg-chat">
-                    <!-- header -->
-                    <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
-                        <!-- user details -->
-                        <div class="d-flex align-items-center">
-                            <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
-                            <div class="details">
-                                <h5 class="mb-0">{{contacts[activeChat].name}}</h5>
-                                <span>Ultimo accesso</span>
+                    <div v-if="activeChat>-1" class="chat-height">
+                        <!-- header -->
+                        <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
+                            <!-- contact details -->
+                            <div class="d-flex align-items-center">
+                                <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
+                                <div class="details">
+                                    <h5 class="mb-0">{{contacts[activeChat].name}}</h5>
+                                    <span>Ultimo accesso</span>
+                                </div>
+                            </div>
+                            <!-- controls -->
+                            <div class="d-flex align-items-center me-2">
+                                <i class="icons fa-solid fa-magnifying-glass"></i>
+                                <i class="icons fa-solid fa-paperclip"></i>
+                                <i class="icons fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                        <!-- controls -->
-                        <div class="d-flex align-items-center me-2">
-                            <i class="icons fa-solid fa-magnifying-glass"></i>
-                            <i class="icons fa-solid fa-paperclip"></i>
-                            <i class="icons fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </div>
 
-                    <!-- active chat -->
-                    <div class="d-flex mb-auto flex-column px-5 pt-4">
-                        <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)"
-                            class="text-message">
-                            <p>{{obj.message}}</p>
+                        <!-- active chat -->
+                        <div class="d-flex flex-column px-5 pt-4">
+                            <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)"
+                                class="text-message">
+                                <p>{{obj.message}}</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- chat input -->
-                    <div class="ab-h60 d-flex justify-content-between align-items-center ab-bg-grey p-3">
+                    <div class="ab-h60 mt-auto d-flex justify-content-between align-items-center ab-bg-grey p-3">
                         <div>
                             <i class="icons fa-regular fa-face-smile"></i>
                         </div>

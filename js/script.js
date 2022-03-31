@@ -11,7 +11,7 @@ const app = new Vue({
     el: '#root',
     data: {
         contacts,
-        activeChat: 0,
+        activeChat: -1,
         newMessage: '',
     },
     methods: {
