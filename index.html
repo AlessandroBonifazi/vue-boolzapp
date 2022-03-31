@@ -12,6 +12,9 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -20,127 +23,139 @@
 </head>
 
 <body>
-    <div id="root">
-        <div class="container-lg">
-            <div class="row gx-0 ab-h95 my-4">
 
-                <!-- container sx -->
-                <div class="col-4 d-flex flex-column bg-white">
+    <div id="root" class="container-lg">
+        <div class="row gx-0 ab-h95 my-4">
+
+            <!-- container sx -->
+            <div class="col-4 d-flex flex-column bg-white">
+                <!-- header -->
+                <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
+                    <!-- user details -->
+                    <div class="d-flex align-items-center">
+                        <img class="frame" src="img/avatar_io.jpg" alt="account avatar">
+                        <div class="details">
+                            <h5>Sofia</h5>
+                        </div>
+                    </div>
+                    <!-- controls -->
+                    <div class="d-flex align-items-center me-2">
+                        <i class="icons fa-solid fa-circle-notch"></i>
+                        <i class="icons fa-solid fa-message"></i>
+                        <i class="icons fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+
+                <!-- notification -->
+                <div class=" col-12 d-flex align-items-center ab-bg-blue p-3">
+                    <div>
+                        <i class="fa-solid fa-bell-slash bg-white rounded-circle p-3 me-3"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 fw-bold">Ricevi notifiche di nuovi messagi</p>
+                        <p class="text-decoration-underline mb-0">Attiva notifiche desktop</p>
+                    </div>
+                </div>
+
+                <!-- input search chat -->
+                <div class="col-12">
+                    <i class="fa-solid fa-magnifying-glass text-secondary p-3"></i>
+                    <input v-model="search" @keyUp="searchChat()" class="w-75 border-0" type="text"
+                        placeholder="Cerca o inizia una nuova chat">
+                </div>
+
+                <!-- recent chat -->
+                <div v-for="(contact, index) in contacts" @click="setActiveChat(index)" class="col-12 px-2 hover">
+                    <div v-if="contact.visible === true" class="d-flex align-items-center justify-content-between">
+                        <!-- avatar -->
+                        <div class="d-flex">
+                            <img class="frame" :src="getAvatar(contact.avatar)" :alt="contact.name">
+                            <!-- name and last text -->
+                            <div>
+                                <div class="fw-bold">{{contact.name}}</div>
+                                <p>{{getLastMsg(contact)}}</p>
+                            </div>
+                        </div>
+                        <!-- last text time -->
+                        <div>
+                            <span>{{getTimeLastMsg(contact)}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- container dx -->
+            <div class="col-8 d-flex flex-column ab-bg-chat">
+                <div v-if="activeChat>-1" class="chat-height">
                     <!-- header -->
-                    <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
-                        <!-- user details -->
+                    <div class="ab-h60 d-flex justify-content-between ab-bg-grey ab-border-left">
+                        <!-- contact details -->
                         <div class="d-flex align-items-center">
-                            <img class="frame" src="img/avatar_io.jpg" alt="account avatar">
+                            <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
                             <div class="details">
-                                <h5>Sofia</h5>
+                                <h5 class="mb-0">{{contacts[activeChat].name}}</h5>
+                                <span>Ultimo accesso</span>
                             </div>
                         </div>
                         <!-- controls -->
                         <div class="d-flex align-items-center me-2">
-                            <i class="icons fa-solid fa-circle-notch"></i>
-                            <i class="icons fa-solid fa-message"></i>
+                            <i class="icons fa-solid fa-magnifying-glass"></i>
+                            <i class="icons fa-solid fa-paperclip"></i>
                             <i class="icons fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </div>
 
-                    <!-- notification -->
-                    <div class=" col-12 d-flex align-items-center ab-bg-blue p-3">
-                        <div>
-                            <i class="fa-solid fa-bell-slash bg-white rounded-circle p-3 me-3"></i>
-                        </div>
-                        <div>
-                            <p class="mb-0 fw-bold">Ricevi notifiche di nuovi messagi</p>
-                            <p class="text-decoration-underline mb-0">Attiva notifiche desktop</p>
-                        </div>
-                    </div>
-
-                    <!-- input search chat -->
-                    <div class=" col-12">
-                        <i class="fa-solid fa-magnifying-glass text-secondary p-3"></i>
-                        <input v-model="search" @keyUp="searchChat()" class="w-75 border-0" type="text"
-                            placeholder="Cerca o inizia una nuova chat">
-                    </div>
-
-                    <!-- recent chat -->
-                    <div v-for="(contact, index) in contacts" @click="setActiveChat(index)" class="col-12 px-2 hover">
-                        <div v-if="contact.visible === true" class="d-flex align-items-center justify-content-between">
-                            <!-- avatar -->
-                            <div class="d-flex">
-                                <img class="frame" :src="getAvatar(contact.avatar)" :alt="contact.name">
-                                <!-- name and last text -->
-                                <div>
-                                    <div class="fw-bold">{{contact.name}}</div>
-                                    <p>{{getLastMsg(contact)}}</p>
-                                </div>
-                            </div>
-                            <!-- last text time -->
-                            <div>
-                                <span>{{getTimeLastMsg(contact)}}</span>
+                    <!-- active chat -->
+                    <div class="d-flex flex-column px-5 pt-4">
+                        <div v-for="(obj, index) in contacts[activeChat].messages" :class="checkStatus(obj)"
+                            @mouseover="mouse = true" @mouseleave="mouse = false" class="text-message p-relative">
+                            <p>{{obj.message}}</p>
+                            <span>{{obj.time}}</span>
+                            <!-- dropdown info message -->
+                            <div v-show="mouse" class="dropdown ab-dropdown">
+                                <button class="btn p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-chevron-down text-secondary"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Message info</a></li>
+                                    <li><a @click="deleteMessage(index)" class="dropdown-item" href="#">Delete
+                                            message</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- banner -->
+                <div v-else class="banner d-flex flex-column justify-content-center align-items-center">
+                    <img src="img/pc-smartphone.png" alt="banner logo">
+                    <h3>Boolzapp</h3>
+                    <p class="text-grey">Seleziona una chat</p>
+                    <span class="text-grey mt-5"><i class="fa-solid fa-lock"></i> End-to-end encrypted</span>
+                </div>
 
-
-                <!-- container dx -->
-                <div class="col-8 d-flex flex-column ab-bg-chat">
-                    <div v-if="activeChat>-1" class="chat-height">
-                        <!-- header -->
-                        <div class="ab-h60 d-flex justify-content-between ab-bg-grey ab-border-left">
-                            <!-- contact details -->
-                            <div class="d-flex align-items-center">
-                                <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
-                                <div class="details">
-                                    <h5 class="mb-0">{{contacts[activeChat].name}}</h5>
-                                    <span>Ultimo accesso</span>
-                                </div>
-                            </div>
-                            <!-- controls -->
-                            <div class="d-flex align-items-center me-2">
-                                <i class="icons fa-solid fa-magnifying-glass"></i>
-                                <i class="icons fa-solid fa-paperclip"></i>
-                                <i class="icons fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </div>
-
-                        <!-- active chat -->
-                        <div class="d-flex flex-column px-5 pt-4 overflow-auto">
-                            <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)"
-                                class="text-message">
-                                <p>{{obj.message}}</p>
-                                <span>{{obj.time}}</span>
-                            </div>
-                        </div>
+                <!-- chat input -->
+                <div v-if="activeChat > -1"
+                    class="ab-h60 mt-auto d-flex justify-content-between align-items-center ab-bg-grey p-3">
+                    <!-- emoji -->
+                    <div>
+                        <i class="icons fa-regular fa-face-smile"></i>
                     </div>
-                    <!-- banner -->
-                    <div v-else class="banner d-flex flex-column justify-content-center align-items-center">
-                        <img src="img/pc and smartphone.png" alt="banner logo">
-                        <h3>Boolzapp</h3>
-                        <p>Seleziona una chat</p>
+                    <!-- input message -->
+                    <div class="flex-grow-1 mx-3">
+                        <input @keyUp.enter="sendMessage(activeChat)" v-model="newMessage"
+                            class="border-0 w-100 rounded-3 ab-h45 px-2" type="text" placeholder="Scrivi un messaggio">
                     </div>
-
-                    <!-- chat input -->
-                    <div v-if="activeChat > -1"
-                        class="ab-h60 mt-auto d-flex justify-content-between align-items-center ab-bg-grey p-3">
-                        <!-- emoji -->
-                        <div>
-                            <i class="icons fa-regular fa-face-smile"></i>
-                        </div>
-                        <!-- input message -->
-                        <div class="flex-grow-1 mx-3">
-                            <input @keyUp.enter="sendMessage(activeChat)" v-model="newMessage"
-                                class="border-0 w-100 rounded-3 ab-h45 px-2" type="text" name=""
-                                placeholder="Scrivi un messaggio">
-                        </div>
-                        <!-- microphone -->
-                        <div>
-                            <i class="icons fa-solid fa-microphone"></i>
-                        </div>
+                    <!-- microphone -->
+                    <div>
+                        <i class="icons fa-solid fa-microphone"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- JS -->
     <script src="js/data.js"></script>

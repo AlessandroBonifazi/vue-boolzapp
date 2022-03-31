@@ -9,6 +9,7 @@ const app = new Vue({
         activeChat: -1,
         newMessage: '',
         search: '',
+        mouse: false,
     },
     methods: {
         setActiveChat(i) {
@@ -63,6 +64,9 @@ const app = new Vue({
             const messages = contact.messages;
             const lastMessageDate = messages[contact.messages.length - 1].time;
             return lastMessageDate;
+        },
+        deleteMessage(i) {
+            this.contacts[this.activeChat].messages.splice(i, 1);
         },
     }
 })
