@@ -40,7 +40,7 @@ const app = new Vue({
             };
             this.contacts[activeChat].messages.push(inputMessage);
             this.newMessage = '';
-            setTimeout(this.autoReply(activeChat), 1000);
+            setTimeout(this.autoReply, 1000, activeChat);
         },
         autoReply(activeChat) {
             const reply = {
