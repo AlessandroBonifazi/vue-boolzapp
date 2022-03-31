@@ -22,10 +22,10 @@
 <body>
     <div id="root">
         <div class="container-lg">
-            <div class="row gx-0">
+            <div class="row gx-0 ab-h95 my-4">
 
                 <!-- container sx -->
-                <div class="col-4 d-flex flex-column vh-100 bg-white">
+                <div class="col-4 d-flex flex-column bg-white">
                     <!-- header -->
                     <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
                         <!-- user details -->
@@ -64,15 +64,18 @@
                     <!-- recent chat -->
                     <div v-for="(contact, index) in contacts" @click="setActiveChat(index)" class="col-12 px-2 hover">
                         <div v-if="contact.visible === true" class="d-flex align-items-center justify-content-between">
+                            <!-- avatar -->
                             <div class="d-flex">
                                 <img class="frame" :src="getAvatar(contact.avatar)" :alt="contact.name">
+                                <!-- name and last text -->
                                 <div>
                                     <div class="fw-bold">{{contact.name}}</div>
                                     <p>{{getLastMsg(contact)}}</p>
                                 </div>
                             </div>
+                            <!-- last text time -->
                             <div>
-                                <span>12:00</span>
+                                <span>{{getTimeLastMsg(contact)}}</span>
                             </div>
                         </div>
                     </div>
@@ -80,10 +83,10 @@
 
 
                 <!-- container dx -->
-                <div class="col-8 d-flex flex-column vh-100 ab-bg-chat">
+                <div class="col-8 d-flex flex-column ab-bg-chat">
                     <div v-if="activeChat>-1" class="chat-height">
                         <!-- header -->
-                        <div class="ab-h60 d-flex justify-content-between ab-bg-grey">
+                        <div class="ab-h60 d-flex justify-content-between ab-bg-grey ab-border-left">
                             <!-- contact details -->
                             <div class="d-flex align-items-center">
                                 <img class="frame" :src="chatAvatar(contacts[activeChat])" alt="img-chat">
@@ -105,12 +108,21 @@
                             <div v-for="obj in contacts[activeChat].messages" :class="checkStatus(obj)"
                                 class="text-message">
                                 <p>{{obj.message}}</p>
+                                <span>{{obj.time}}</span>
                             </div>
                         </div>
                     </div>
+                    <!-- banner -->
+                    <div v-else class="banner d-flex flex-column justify-content-center align-items-center">
+                        <img src="img/pc and smartphone.png" alt="banner logo">
+                        <h3>Boolzapp</h3>
+                        <p>Seleziona una chat</p>
+                    </div>
 
                     <!-- chat input -->
-                    <div class="ab-h60 mt-auto d-flex justify-content-between align-items-center ab-bg-grey p-3">
+                    <div v-if="activeChat > -1"
+                        class="ab-h60 mt-auto d-flex justify-content-between align-items-center ab-bg-grey p-3">
+                        <!-- emoji -->
                         <div>
                             <i class="icons fa-regular fa-face-smile"></i>
                         </div>
