@@ -35,6 +35,7 @@ const app = new Vue({
         },
         sendMessage(activeChat) {
             const inputMessage = {
+                date: '10/01/2020',
                 message: this.newMessage,
                 status: 'sent',
             };
@@ -53,17 +54,20 @@ const app = new Vue({
             const input = this.search.toLowerCase();
             for (let i = 0; i < this.contacts.length; i++) {
                 const contactName = this.contacts[i].name.toLowerCase();
-                if (contactName.includes(input)) {
-                    this.contacts[i].visible = true;
-                } else if (!contactName.includes(input)) {
-                    this.contacts[i].visible = false;
-                }
+                // if (contactName.includes(input)) {
+                //      = true;
+                // } else if (!contactName.includes(input)) {
+                //     this.contacts[i].visible = false;
+                // }
+                this.contacts[i].visible = contactName.includes(input)
             }
         },
         getTimeLastMsg(contact) {
             const messages = contact.messages;
             const lastMessageDate = messages[contact.messages.length - 1].time;
-            return lastMessageDate;
+            if (lastMessageDate) {
+                return lastMessageDate;
+            }
         },
         deleteMessage(i) {
             this.contacts[this.activeChat].messages.splice(i, 1);
